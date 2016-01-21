@@ -71,7 +71,11 @@ def cesareans_input():
 @app.route('/output')
 def cesareans_output():
   #pull 'birth_month' from input field and store it
-  patient = request.args.get('birth_month')
+##  patient = request.args.get('birth_month')
+  patient = request.args.get('latspan')
+
+  print "AAAAAARRRRRRGGGGGHHHHH", patient
+
     #just select the Cesareans  from the birth dtabase for the month that the user inputs
   query = "SELECT index, attendant, birth_month FROM birth_data_table WHERE delivery_method='Cesarean' AND birth_month='%s'" % patient
   print query

@@ -65,23 +65,136 @@
 
     <div class = "container">
 
-      <form  action="/output" method="GET">
-        <div class="form-group">
-          <label for="birth_month">Birth Month:</label>
-          <input type="text" id="birth_month" name='birth_month' placeholder="e.g. ">
-        </div>
+<!--       <form  action="/output" method="GET"> -->
+<!--         <div class="form-group"> -->
+<!--           <label for="birth_month">Birth Month:</label> -->
+<!--           <input type="text" id="birth_month" name='birth_month' placeholder="e.g. "> -->
+<!--         </div> -->
+
+<!--         <div> -->
+<!--           <button type="submit" class="btn btn-default btn-lg">Find these Cesareans!</button> -->
+<!--         </div> -->
+
+<!--       </form> -->
+
+
+<!-- JMG!!!!!!!!!! -->
+<!--       <form action="/output" method="GET"> -->
+      <form class = "pure-form graybox" id="testme" action="/output" method="GET">
+<!--       <form class = "pure-form graybox" id="testme"> -->
+	<div class="pure-u-1-2 pure-u-md-1-2">
+	  <label for="lng"> TESTME:</label>
+	  <input type="text" name="lng" id="lng" placeholder="junky junky" />
+	</div>
+
+	<div class="pure-g">
+	  <h3 class="titleh3">Lat</h3>
+	  <span id="latspan" class="coordinatetxt">0</span>
+	</div>
 
         <div>
-          <button type="submit" class="btn btn-default btn-lg">Find these Cesareans!</button>
+          <button type="submit" class="btn btn-default btn-lg">Doobie Do</button>
         </div>
-
       </form>
+
+<!--       <input type="text" name='screw' id='screw' placeholder="screwydoob" value="screwbydoop" > -->
+<!--       Name:<input type="text" id="screw" value="scr" > -->
+
+<!--       <button onclick="changeit()">TRY IT</button> -->
+
+<!--       <script> -->
+<!-- 	function changeit() { -->
+<!-- 	   document.getElementByID("screw").value = "CHANGED"; -->
+<!-- 	} -->
+<!--       </script> -->
+
+
+        Name: <input type="text" name="screw" id="screw" value="" placeholder="Temp">
+
+        <button onclick="changeit()">Try it</button>
+
+<!--         <script> -->
+<!--         </script> -->
+
+
+<!-- END JMG!!!!! -->
+
+    </div>
+
+    <div class="pure-g">
+      <h3 class="titleh3">Lat Long</h3>
+      <span id="latlngspan" class="coordinatetxt">0,0</span>
     </div>
 
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="static/js/bootstrap.min.js"></script>
 
   </div> <!-- /.container-->
+
+<!--### JMG Add google map here-->
+    <style type="text/css">
+      html, body { height: 100%;}
+<!--; width: 50%; margin: 10; padding: 10; } -->
+      #map { height: 100%; }
+    </style>
+
+<div id="map" style = "height:600px; width:400px; margin:5%; border: 10px solid black;"></div>
+<script type="text/javascript">
+var map;
+var myLat;
+function initMap() {
+  map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: 40.77, lng: -73.97},
+    zoom: 12
+  });
+
+  google.maps.event.addListener(map, "click", function(event) {
+      var clickLat = event.latLng.lat();
+      var clickLon = event.latLng.lng();
+
+      var marker = new google.maps.Marker({
+            position: new google.maps.LatLng(clickLat,clickLon),
+            map: map
+         });
+
+      myLat = clickLat;
+
+<!--       window.alert(event.latLng.lat().toFixed(6)); -->
+
+      var yeri = event.latLng;
+
+      var latlongi = "(" + yeri.lat().toFixed(6) + ", " +yeri.lng().toFixed(6) + ")";
+
+      document.getElementById("latlngspan").innerHTML =  latlongi;
+
+      document.getElementByID("screw").value = "hey";
+
+
+<!--       document.getElementById('latspan').innerHTML =  event.latLng.lat().toFixed(6); -->
+<!--       document.getElementByID("lng").value = clickLon.toFixed(6); -->
+   });
+
+<!-- function loadScript() { -->
+<!--   var script = document.createElement('script'); -->
+<!--   script.type = 'text/javascript'; -->
+<!--   script.scr = "https://maps.googleapis.com/maps/api/js?key=AIzaSyDdyZ3iI9FcEF6qloq-cJ6fmczI6c4mluw&callback=initMap"; -->
+<!--   document.body.appendChild(script); -->
+<!-- } -->
+
+}
+
+function changeit() {
+    document.getElementById("screw").value = myLat;
+}
+
+<!-- window.onload = function () { initMap() }; -->
+
+    </script>
+    <script async defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDdyZ3iI9FcEF6qloq-cJ6fmczI6c4mluw&callback=initMap">
+    </script>
+
+<!--### End map-->
 
 
     <!-- Bootstrap core JavaScript
