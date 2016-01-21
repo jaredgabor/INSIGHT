@@ -1,0 +1,12 @@
+#!/bin/csh
+
+set file = $1
+latex $file
+###bibtex $file
+###idl run_fix_bbl.idl
+latex $file
+latex $file
+dvips -o ${file}.ps ${file}.dvi
+ps2pdf ${file}.ps
+
+exit
